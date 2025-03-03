@@ -25,8 +25,8 @@ for ID in "${IDs[@]}"; do
     RESPONSE=$(curl -s -X GET "$URL")  
     LEDGER_STATUS=$(echo "$RESPONSE" | jq -r '.status')
     if [ "$LEDGER_STATUS" = "$TRANSACTION_STATUS" ]; then  
-        echo -e "\e[32mSuccess\e[0m for $ID"  
+        echo -e "\e[32mTest Passed\e[0m for $ID"  
     else
-        echo -e "\e[31mFailed\e[0m for $ID"
+        echo -e "\e[31mTest Failed\e[0m for $ID"
     fi
 done  

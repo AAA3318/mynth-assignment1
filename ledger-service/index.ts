@@ -12,7 +12,7 @@ const TRANSACTION_QUEUE = process.env.TRANSACTION_QUEUE || "transactions";
 const STATUS_QUEUE = process.env.STATUS_QUEUE || "status";
 
 type Transaction = {
-  id: number;
+  id: string;
   sender: string;
   receiver: string;
   amount: number;
@@ -76,10 +76,10 @@ const recevieTransactions = async () => {
 recevieTransactions().catch(console.error);
 
 /*
-  API Endpoint for getting all transaction status
+  API Endpoint for getting the transaction detail
 */
-app.get("/transactions", (req: Request, res: Response) => {
-  res.json({ transactions: processedTransactions });
+app.get("/transactions/:id", (req: Request, res: Response) => {
+  res.json(processedTransactions.find((item) => item.id === req.params.id));
 });
 
 app.listen(3002, () => {

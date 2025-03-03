@@ -103,7 +103,7 @@ app.post("/transaction", async (req: Request, res: Response) => {
   id: string
 */
 app.get("/status/:id", (req: Request, res: Response) => {
-  res.json({ status: transactionStatus[parseInt(req.params.id)] || "Unknown" });
+  res.json({ status: transactionStatus[req.params.id] || "Unknown" });
 });
 
 app.listen(3001, () => {
